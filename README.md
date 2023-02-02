@@ -6,7 +6,8 @@ Utility to easily upload pictures and GIFs to discord resized to emoji dimension
 
 ## Features
 - Always stays on top.
-- Safe and does not break the terms of service of discord.
+- Does not need token nor any additional installation and all pictures and GIFs are stored locally. 
+- Safe and does not break the terms of service of discord as it does not modify the client.
 - Automatic color replacer for backgrounds to match the discord color palette and seem transparent.
 - Automatic size changer so the pictures and GIFs match native emoji sizes. 
 - Easily add GIFs via their links to download them directly.
