@@ -11,17 +11,19 @@ namespace PicUploader
     {
         public GifGen(string url) 
         {
-                 Clipboard.Clear();
-                GC.Collect();
-                string ResizedGif =url;
+          Clipboard.Clear();
+          string ResizedGif = url; 
+
+
                 for (int i = 10; i < 100; i++)
                 {
                     if (ResizedGif.Contains("size=" + i))
                     {
-                        ResizedGif = Regex.Replace(url, "size=" + i, "size=40");
+                        ResizedGif = Regex.Replace(url, "size=" + i, "size=50");
                     }
                 }
-                Clipboard.SetText(ResizedGif);
+
+          Clipboard.SetText(ResizedGif);
         }
     }
 }
