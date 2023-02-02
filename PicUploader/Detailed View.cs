@@ -12,9 +12,12 @@
 
         readonly HttpClient httpClient = new();
         public static readonly string FolderPath = @".\Storage";
+        
 
         public void Detailed_View_Load_1(object sender, EventArgs e)
         {
+            if (System.IO.Directory.Exists(FolderPath)) { }
+            else { System.IO.Directory.CreateDirectory(FolderPath); }
             RefreshData();
         }
 
@@ -108,8 +111,6 @@
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
     }
 }
