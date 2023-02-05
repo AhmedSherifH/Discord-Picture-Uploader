@@ -23,16 +23,13 @@ namespace PicUploader
         {
             Clipboard.Clear();
             string ResizedGif = url;
-
-
             for (int i = 10; i < 100; i++)
             {
                 if (ResizedGif.Contains("size=" + i))
                 {
-                    ResizedGif = Regex.Replace(url, "size=" + i, "size=50");
+                    ResizedGif = Regex.Replace(url, "size=" + i, "size=40");
                 }
             }
-
             Clipboard.SetText(ResizedGif);
         }
     }
