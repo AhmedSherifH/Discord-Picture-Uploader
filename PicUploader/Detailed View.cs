@@ -1,6 +1,4 @@
-﻿using KGySoft.Drawing;
-using System.Net;
-using System.Security.Policy;
+﻿using System.Net;
 using WebPWrapper;
 
 namespace PicUploader
@@ -26,27 +24,6 @@ namespace PicUploader
             RefreshData();
         }
 
-
-
-        private void Pic_Click(object? sender, EventArgs e)
-        {
-
-            if (sender is PictureBox pictureBox)
-            {
-                PicGen _ = new(pictureBox);
-            }
-        }
-
-        private void HTTPClick(object? sender, EventArgs e)
-        {
-            if (sender is PictureBox pictureBox)
-            {
-                string url = pictureBox.Name;
-                GifGen _ = new(url);
-            }
-
-        }
-
         private async void RefreshData()
         {
             DirectoryInfo directory = new(FolderPath);
@@ -68,7 +45,6 @@ namespace PicUploader
                         Image gif = Image.FromStream(await httpClient.GetStreamAsync(url));
                         PictureBox picture = new()
                         {
-
                             Name = url,
                             Size = new(45, 45),
                             Image = gif,
@@ -101,20 +77,16 @@ namespace PicUploader
                 {
                     WebP webp = new();
                     Bitmap bitmap = webp.Load(file.FullName);
-      //              bitmap.SaveAsPng(file.FullName);
-                 
-                 
                     PictureBox picture = new()
                     {
                         Name = "webp",
                         Size = new(45, 45),
-                         Image = bitmap,
+                        Image = bitmap,
                         SizeMode = PictureBoxSizeMode.Zoom
                     };
 
                     picture.Click += Pic_Click;
                     flowLayoutPanel1.Controls.Add(picture);
-
                 }
             }
         }
@@ -129,18 +101,62 @@ namespace PicUploader
             {
                 string picID = new(TXT_Add.Text.Where(char.IsDigit).ToArray());
                 string picURL = TXT_Add.Text;
-                string picLocation = FolderPath + "\\" + picID + ".txt";
-                File.WriteAllText(picLocation, picURL);
-                flowLayoutPanel1.Controls.Clear();
-                flowLayoutPanelGif.Controls.Clear();
-                RefreshData();
-                TXT_Add.Text = null;
+                string picLocationTXT = FolderPath + "\\" + picID + ".txt";
+                string picLocationWEBP = FolderPath + "\\" + picID + ".webp";
+                if (!string.IsNullOrWhiteSpace(TXT_Add.Text))
+                {
+                    if (picURL.Contains(".gif"))
+                    {
+                        File.WriteAllText(picLocationTXT, picURL);
+                        flowLayoutPanel1.Controls.Clear();
+                        flowLayoutPanelGif.Controls.Clear();
+                        RefreshData();
+                        TXT_Add.Text = null;
+                    }
+
+                    if (picURL.Contains(".webp"))
+                    {
+                        webClient.DownloadFile(picURL, picLocationWEBP);
+                        flowLayoutPanel1.Controls.Clear();
+                        flowLayoutPanelGif.Controls.Clear();
+                        RefreshData();
+                        TXT_Add.Text = null;
+                    }
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Empty Input!");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+      
+        private void Pic_Click(object? sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                PicGen _ = new(pictureBox);
+            }
+        }
+
+        private void HTTPClick(object? sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                string url = pictureBox.Name;
+                GifGen _ = new(url);
+            }
+
+        }
+
+
     }
 }
 
