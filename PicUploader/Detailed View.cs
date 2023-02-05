@@ -1,4 +1,9 @@
-﻿namespace PicUploader
+﻿using KGySoft.Drawing;
+using System.Net;
+using System.Security.Policy;
+using WebPWrapper;
+
+namespace PicUploader
 {
     public partial class Detailed_View : Form
     {
@@ -9,10 +14,10 @@
             this.TopLevel = true;
             this.DoubleBuffered = true;
         }
-
+        readonly WebClient webClient = new();
         readonly HttpClient httpClient = new();
         public static readonly string FolderPath = @".\Storage";
-        
+
 
         public void Detailed_View_Load_1(object sender, EventArgs e)
         {
@@ -32,7 +37,7 @@
             }
         }
 
-        private void Gif_Click(object? sender, EventArgs e)
+        private void HTTPClick(object? sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
             {
@@ -46,36 +51,37 @@
         {
             DirectoryInfo directory = new(FolderPath);
             FileInfo[] files = directory.GetFiles();
-            string[] FileFormats = { ".png", ".jpg", ".jpeg", ".txt" };
+            string[] FileFormats = { ".png", ".jpg", ".jpeg", ".txt", ".webp", ".gif" }; //0 png, 1jpg, 2jpeg, 3txt, 4webp, 5gif
             for (int pictureCreator = 0; pictureCreator < files.Length; pictureCreator++)
             {
                 FileInfo file = files[pictureCreator];
                 if (file.FullName.EndsWith(FileFormats[3]))
                 {
                     string url = File.ReadAllText(file.FullName);
-                    if (url != null)
+                    bool isGif = url.Contains(FileFormats[5]);
+                    bool isPic = url.Contains(FileFormats[0]) | url.Contains(FileFormats[1]) || url.Contains(FileFormats[2]);
+                    bool isWebp = url.Contains(FileFormats[4]);
+
+                    if (isGif)
                     {
-                        try
+
+                        Image gif = Image.FromStream(await httpClient.GetStreamAsync(url));
+                        PictureBox picture = new()
                         {
-                            Image gif = Image.FromStream(await httpClient.GetStreamAsync(url));
-                            PictureBox picture = new()
-                            {
-                                Name = url,
-                                Size = new(45, 45),
-                                Image = gif,
-                                SizeMode = PictureBoxSizeMode.Zoom
-                            };
-                            picture.Click += Gif_Click;
-                            flowLayoutPanelGif.Controls.Add(picture);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+
+                            Name = url,
+                            Size = new(45, 45),
+                            Image = gif,
+                            SizeMode = PictureBoxSizeMode.Zoom
+                        };
+                        picture.Click += HTTPClick;
+                        flowLayoutPanelGif.Controls.Add(picture);
                     }
+
                 }
 
-                if (file.FullName.EndsWith(FileFormats[0]))
+
+                if (!file.FullName.EndsWith(FileFormats[3]) && !file.FullName.EndsWith(FileFormats[4]))
                 {
                     PictureBox picture = new()
                     {
@@ -83,22 +89,45 @@
                         Size = new(45, 45),
                         Image = Image.FromFile(file.FullName),
                         SizeMode = PictureBoxSizeMode.Zoom
+
                     };
+                    picture.Click += Pic_Click;
+                    flowLayoutPanel1.Controls.Add(picture);
+                }
+
+
+
+                if (file.FullName.Contains(".webp"))
+                {
+                    WebP webp = new();
+                    Bitmap bitmap = webp.Load(file.FullName);
+      //              bitmap.SaveAsPng(file.FullName);
+                 
+                 
+                    PictureBox picture = new()
+                    {
+                        Name = "webp",
+                        Size = new(45, 45),
+                         Image = bitmap,
+                        SizeMode = PictureBoxSizeMode.Zoom
+                    };
+
                     picture.Click += Pic_Click;
                     flowLayoutPanel1.Controls.Add(picture);
 
                 }
-
             }
-
         }
+
+
+
 
 
         private void BTN_AddGif_Click(object sender, EventArgs e)
         {
             try
             {
-                string picID = new String(TXT_Add.Text.Where(char.IsDigit).ToArray());
+                string picID = new(TXT_Add.Text.Where(char.IsDigit).ToArray());
                 string picURL = TXT_Add.Text;
                 string picLocation = FolderPath + "\\" + picID + ".txt";
                 File.WriteAllText(picLocation, picURL);
@@ -114,3 +143,4 @@
         }
     }
 }
+
