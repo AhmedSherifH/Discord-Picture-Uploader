@@ -23,7 +23,9 @@ https://user-images.githubusercontent.com/69525619/216455284-5c555a80-35d6-4886-
 
 
 ## Notes/Warnings
-- GIF file formats are not supported. To add animated emojis, copy their link and add them to a text file. To automatically do this on the application, add the link to the textbox at the bottom and click add. A text file that includes the link will be automatically created.
+- GIF file formats are not supported. To automatically do this on the application, add the link to the textbox at the bottom and click add. A text file that includes the link will be automatically created.
+- When adding new emojis to the program, it is recommended that you copy their links and add them directly using the text box found in the program. This only applies to GIF and static images. 
+- It is advised against downloading emojis directly into the Storage file due to apparent artifacts that appear around the emoji.
 
 ___
 <a href='https://ko-fi.com/ahmedsherif1' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
