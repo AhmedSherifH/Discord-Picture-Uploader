@@ -1,5 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Security.Policy;
+using System.Text.RegularExpressions;
 using WebPWrapper;
+
 
 namespace PicUploader
 {
@@ -36,7 +40,6 @@ namespace PicUploader
                 {
                     string url = File.ReadAllText(file.FullName);
                     bool isGif = url.Contains(FileFormats[5]);
-                    bool isPic = url.Contains(FileFormats[0]) | url.Contains(FileFormats[1]) || url.Contains(FileFormats[2]);
                     bool isWebp = url.Contains(FileFormats[4]);
 
                     if (isGif)
@@ -50,9 +53,11 @@ namespace PicUploader
                             Image = gif,
                             SizeMode = PictureBoxSizeMode.Zoom
                         };
-                        picture.Click += HTTPClick;
+                        picture.Click += Gif_Click;
                         flowLayoutPanelGif.Controls.Add(picture);
                     }
+
+
 
                 }
 
@@ -65,13 +70,10 @@ namespace PicUploader
                         Size = new(45, 45),
                         Image = Image.FromFile(file.FullName),
                         SizeMode = PictureBoxSizeMode.Zoom
-
                     };
                     picture.Click += Pic_Click;
                     flowLayoutPanel1.Controls.Add(picture);
                 }
-
-
 
                 if (file.FullName.Contains(".webp"))
                 {
@@ -79,15 +81,16 @@ namespace PicUploader
                     Bitmap bitmap = webp.Load(file.FullName);
                     PictureBox picture = new()
                     {
-                        Name = "webp",
+                        Name = file.Name,
                         Size = new(45, 45),
                         Image = bitmap,
                         SizeMode = PictureBoxSizeMode.Zoom
                     };
 
-                    picture.Click += Pic_Click;
+                    picture.Click += WebP_Click;
                     flowLayoutPanel1.Controls.Add(picture);
                 }
+
             }
         }
 
@@ -99,7 +102,8 @@ namespace PicUploader
         {
             try
             {
-                string picID = new(TXT_Add.Text.Where(char.IsDigit).ToArray());
+                string picIDNum = new(TXT_Add.Text.Where(char.IsDigit).ToArray());
+                string picID = picIDNum.Remove(picIDNum.Length - 2);
                 string picURL = TXT_Add.Text;
                 string picLocationTXT = FolderPath + "\\" + picID + ".txt";
                 string picLocationWEBP = FolderPath + "\\" + picID + ".webp";
@@ -122,8 +126,6 @@ namespace PicUploader
                         RefreshData();
                         TXT_Add.Text = null;
                     }
-
-
                 }
                 else
                 {
@@ -137,7 +139,7 @@ namespace PicUploader
         }
 
 
-      
+
         private void Pic_Click(object? sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
@@ -146,7 +148,7 @@ namespace PicUploader
             }
         }
 
-        private void HTTPClick(object? sender, EventArgs e)
+        private void Gif_Click(object? sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
             {
@@ -156,6 +158,27 @@ namespace PicUploader
 
         }
 
+        private void WebP_Click(object? sender, EventArgs e)
+        {
+            string? URL1 = @"https://cdn.discordapp.com/emojis/";
+            string? URL3 = @"?size=96&quality=lossless";
+            if (sender is PictureBox pictureBox)
+            {
+                
+                string URL2 = pictureBox.Name;
+                string CompleteString = URL1 + URL2 + URL3;
+                for (int i = 10; i < 100; i++)
+                {
+                    if (CompleteString.Contains("size=" + i))
+                    {
+                        CompleteString = Regex.Replace(CompleteString, "size=" + i, "size=47");
+                    }
+                }
+                MessageBox.Show(CompleteString);
+                Clipboard.SetText(CompleteString);
+            }
+
+        }
 
     }
 }

@@ -2,6 +2,7 @@
 using KGySoft.Drawing.Imaging;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using WebPWrapper;
 
 namespace PicUploader
 {
@@ -21,7 +22,7 @@ namespace PicUploader
     {
         public GifGen(string url)
         {
-            Clipboard.Clear();
+            Clipboard.Clear(); 
             string ResizedGif = url;
             for (int i = 10; i < 100; i++)
             {
