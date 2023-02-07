@@ -1,8 +1,7 @@
 ﻿using KGySoft.Drawing;
 using KGySoft.Drawing.Imaging;
-using System.Drawing;
 using System.Text.RegularExpressions;
-using WebPWrapper;
+using System.Windows.Forms;
 
 namespace PicUploader
 {
@@ -32,6 +31,25 @@ namespace PicUploader
                 }
             }
             Clipboard.SetText(ResizedGif);
+        }
+    }
+
+    public class WebPGen
+    {
+        public WebPGen(PictureBox pictureBox) 
+        {
+            string? URL1 = @"https://cdn.discordapp.com/emojis/";
+            string? URL3 = @"?size=96&quality=lossless";
+            string URL2 = pictureBox.Name;
+            string CompleteString = URL1 + URL2 + URL3;
+            for (int i = 10; i < 100; i++)
+            {
+                if (CompleteString.Contains("size=" + i))
+                {
+                    CompleteString = Regex.Replace(CompleteString, "size=" + i, "size=40");
+                }
+            }
+            Clipboard.SetText(CompleteString);
         }
     }
 }

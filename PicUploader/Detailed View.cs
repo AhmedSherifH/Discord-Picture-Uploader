@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Security.Policy;
-using System.Text.RegularExpressions;
+﻿using System.Net;
 using WebPWrapper;
 
 
@@ -10,25 +7,26 @@ namespace PicUploader
     public partial class Detailed_View : Form
     {
         public Detailed_View()
-        {
-            InitializeComponent();
-            this.TopMost = true;
-            this.TopLevel = true;
-            this.DoubleBuffered = true;
-        }
-        readonly WebClient webClient = new();
-        readonly HttpClient httpClient = new();
-        public static readonly string FolderPath = @".\Storage";
+            {
+                InitializeComponent();
+                this.TopMost = true;
+                this.TopLevel = true;
+                this.DoubleBuffered = true;
+            }
+
+            readonly WebClient webClient = new();
+            readonly HttpClient httpClient = new();
+            public static readonly string FolderPath = @".\Storage";
 
 
-        public void Detailed_View_Load_1(object sender, EventArgs e)
-        {
-            if (System.IO.Directory.Exists(FolderPath)) { }
-            else { System.IO.Directory.CreateDirectory(FolderPath); }
-            RefreshData();
-        }
+            public void Detailed_View_Load_1(object sender, EventArgs e)
+            {
+                if (System.IO.Directory.Exists(FolderPath)) { }
+                else { System.IO.Directory.CreateDirectory(FolderPath); }
+                RefreshData();
+            }
 
-        private async void RefreshData()
+            private async void RefreshData()
         {
             DirectoryInfo directory = new(FolderPath);
             FileInfo[] files = directory.GetFiles();
@@ -54,11 +52,10 @@ namespace PicUploader
                             SizeMode = PictureBoxSizeMode.Zoom
                         };
                         picture.Click += Gif_Click;
+                        picture.MouseEnter += PictureResizeBig;
+                        picture.MouseLeave += PictureResizeOriginal;
                         flowLayoutPanelGif.Controls.Add(picture);
                     }
-
-
-
                 }
 
 
@@ -72,6 +69,8 @@ namespace PicUploader
                         SizeMode = PictureBoxSizeMode.Zoom
                     };
                     picture.Click += Pic_Click;
+                    picture.MouseEnter += PictureResizeBig;
+                    picture.MouseLeave += PictureResizeOriginal;
                     flowLayoutPanel1.Controls.Add(picture);
                 }
 
@@ -88,6 +87,8 @@ namespace PicUploader
                     };
 
                     picture.Click += WebP_Click;
+                    picture.MouseEnter += PictureResizeBig;
+                    picture.MouseLeave += PictureResizeOriginal;
                     flowLayoutPanel1.Controls.Add(picture);
                 }
 
@@ -160,24 +161,35 @@ namespace PicUploader
 
         private void WebP_Click(object? sender, EventArgs e)
         {
-            string? URL1 = @"https://cdn.discordapp.com/emojis/";
-            string? URL3 = @"?size=96&quality=lossless";
+
             if (sender is PictureBox pictureBox)
             {
-                
-                string URL2 = pictureBox.Name;
-                string CompleteString = URL1 + URL2 + URL3;
-                for (int i = 10; i < 100; i++)
-                {
-                    if (CompleteString.Contains("size=" + i))
-                    {
-                        CompleteString = Regex.Replace(CompleteString, "size=" + i, "size=47");
-                    }
-                }
-                MessageBox.Show(CompleteString);
-                Clipboard.SetText(CompleteString);
+                WebPGen _ = new(pictureBox);
             }
 
+        }
+
+
+        private void PictureResizeBig(object? sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    pictureBox.Size = new Size(pictureBox.Width + i, pictureBox.Height + i);
+                }
+            }
+        }
+        
+      private void PictureResizeOriginal(object? sender, EventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    pictureBox.Size = new Size(pictureBox.Width - i, pictureBox.Height - i);
+                }
+            }
         }
 
     }

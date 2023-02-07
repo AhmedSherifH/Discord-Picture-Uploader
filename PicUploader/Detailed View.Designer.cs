@@ -92,7 +92,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Detailed_View";
+            this.Text = "Picture Uploader";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Detailed_View_Load_1);
             this.ResumeLayout(false);
