@@ -174,10 +174,9 @@ namespace PicUploader
         {
             if (sender is PictureBox pictureBox)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    pictureBox.Size = new Size(pictureBox.Width + i, pictureBox.Height + i);
-                }
+              
+                    pictureBox.Size = new Size(pictureBox.Width + 5, pictureBox.Height + 5);
+                
             }
         }
         
@@ -185,10 +184,9 @@ namespace PicUploader
         {
             if (sender is PictureBox pictureBox)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    pictureBox.Size = new Size(pictureBox.Width - i, pictureBox.Height - i);
-                }
+              
+                    pictureBox.Size = new Size(pictureBox.Width - 5, pictureBox.Height - 5);
+                
             }
         }
 
