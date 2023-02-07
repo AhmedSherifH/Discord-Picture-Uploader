@@ -5,7 +5,7 @@ Utility to easily upload pictures and GIFs to discord resized to emoji dimension
    
 
 ## Features
-- Plenty of formats are supported.
+- Various formats are supported.
 - Always stays on top so that the user doesn't have to repeatedly switch windows.
 - Does not need token or any additional installation and all pictures and GIFs are stored locally. 
 - Safe and does not break the terms of service of discord as it does not modify the client.
@@ -16,15 +16,14 @@ Utility to easily upload pictures and GIFs to discord resized to emoji dimension
 
 
 
-
-## Showcase
-
-https://user-images.githubusercontent.com/69525619/216455284-5c555a80-35d6-4886-9dd9-4157d0857720.mp4
+## Usage
+- The recommended way of using the program is by copying the the link of the emojis sent from discord and pasting them into the program's text box, after doing so, the emoji will appear in the program. (Applies to both static and animated emojis - WebP and GIF)
+- To copy an emoji into your clipboard, all you need to do is click on the desired and emoji.
 
 
 ## Notes/Warnings
-- GIF file formats are not supported. To automatically do this on the application, add the link to the textbox at the bottom and click add. A text file that includes the link will be automatically created.
-- When adding new emojis to the program, it is recommended that you copy their links and add them directly using the text box found in the program. This only applies to GIF and static images. 
+- GIF file formats are not supported. To automatically add GIFs through the application, add the link to the textbox at the bottom and click add. A text file that includes the link will be automatically created.
+- The links of the animated emojis need to be stored in a text file. This is because that when the GIF is set directly into the clipboard, it loses transparency and only the first frame would be copied. 
 - It is advised against downloading emojis directly into the Storage file due to apparent artifacts that appear around the emoji. This is because of the way changing the color of the background to match discord's chat color is handled.
 
 ___
