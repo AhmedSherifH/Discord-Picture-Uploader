@@ -25,6 +25,7 @@ Utility to easily upload pictures and GIFs to discord resized to emoji dimension
 - GIF file formats are not supported. To automatically add GIFs through the application, add the link to the textbox at the bottom and click add. A text file that includes the link will be automatically created.
 - The links of the animated emojis need to be stored in a text file. This is because that when the GIF is set directly into the clipboard, it loses transparency and only the first frame would be copied. 
 - It is advised against downloading emojis directly into the Storage file due to apparent artifacts that appear around the emoji. This is because of the way changing the color of the background to match discord's chat color is handled.
+- Changing the name of a WebP image will prevent in from showing in the program. This is because the name of the file is the ID that will be placed in discord's CDN attachement URL. 
 
 ___
 <a href='https://ko-fi.com/ahmedsherif1' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
