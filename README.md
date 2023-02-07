@@ -18,7 +18,7 @@ Utility to easily upload pictures and GIFs to discord resized to emoji dimension
 
 ## Usage
 - The recommended way of using the program is by copying the the link of the emojis sent from discord and pasting them into the program's text box, after doing so, the emoji will appear in the program. (Applies to both static and animated emojis - WebP and GIF)
-- To copy an emoji into your clipboard, all you need to do is click on the desired and emoji.
+- To copy an emoji into your clipboard, all you need to do is click on the desired emoji.
 
 
 ## Notes/Warnings
