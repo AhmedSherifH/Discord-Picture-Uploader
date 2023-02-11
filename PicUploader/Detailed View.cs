@@ -6,27 +6,29 @@ namespace PicUploader
 {
     public partial class Detailed_View : Form
     {
+        public static readonly string FolderPath = @".\Storage";
+
         public Detailed_View()
-            {
-                InitializeComponent();
-                this.TopMost = true;
-                this.TopLevel = true;
-                this.DoubleBuffered = true;
-            }
+        {
+            InitializeComponent();
+            this.TopMost = true;
+            this.TopLevel = true;
+            this.DoubleBuffered = true;
 
-            readonly WebClient webClient = new();
-            readonly HttpClient httpClient = new();
-            public static readonly string FolderPath = @".\Storage";
+        }
+
+        readonly WebClient webClient = new();
+        readonly HttpClient httpClient = new();
 
 
-            public void Detailed_View_Load_1(object sender, EventArgs e)
-            {
-                if (System.IO.Directory.Exists(FolderPath)) { }
-                else { System.IO.Directory.CreateDirectory(FolderPath); }
-                RefreshData();
-            }
+        public void Detailed_View_Load_1(object sender, EventArgs e)
+        {
+            if (System.IO.Directory.Exists(FolderPath)) { }
+            else { System.IO.Directory.CreateDirectory(FolderPath); }
+            RefreshData();
+        }
 
-            private async void RefreshData()
+        private async void RefreshData()
         {
             DirectoryInfo directory = new(FolderPath);
             FileInfo[] files = directory.GetFiles();
@@ -174,19 +176,19 @@ namespace PicUploader
         {
             if (sender is PictureBox pictureBox)
             {
-              
-                    pictureBox.Size = new Size(pictureBox.Width + 5, pictureBox.Height + 5);
-                
+
+                pictureBox.Size = new Size(pictureBox.Width + 5, pictureBox.Height + 5);
+
             }
         }
-        
-      private void PictureResizeOriginal(object? sender, EventArgs e)
+
+        private void PictureResizeOriginal(object? sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
             {
-              
-                    pictureBox.Size = new Size(pictureBox.Width - 5, pictureBox.Height - 5);
-                
+
+                pictureBox.Size = new Size(pictureBox.Width - 5, pictureBox.Height - 5);
+
             }
         }
 

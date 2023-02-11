@@ -63,7 +63,7 @@
             // 
             this.TXT_Add.Location = new System.Drawing.Point(12, 180);
             this.TXT_Add.Name = "TXT_Add";
-            this.TXT_Add.Size = new System.Drawing.Size(336, 23);
+            this.TXT_Add.Size = new System.Drawing.Size(330, 23);
             this.TXT_Add.TabIndex = 2;
             // 
             // BTN_AddGif
@@ -86,6 +86,7 @@
             this.Controls.Add(this.TXT_Add);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanelGif);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Detailed_View";
