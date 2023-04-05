@@ -58,6 +58,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DwAACw8BkvkDpQAAA09JREFUeF7tl01y00AUhLPgLgSbbKAKCTa5FkuWFD/H4SKEC2DBEirADhZBY1pU
+        Z2jbo7GeTaz+qr6F7daz3M+ykjNjjDHGGGOM+d9Zdu3NNhEzUajSWcRMFKp0FjEThSqdRcxEoUpnETNR
+        qNJZxEwUqnQWMROFKp1FzBhjjDHGGGPMVKh/vljETBSqdBYxE4UqnUXMRKFKZxEzUajSWcRMFKp0FjET
+        hSqdRcxEoUpnETNRqNJZxEwUqnQWMROFKp1FzEShSmcRM1Go0lnETBSqdBYxE4UqnUXMRKFKZxEzUajS
+        WcRMFKp0FjEThSqdRcxEoUpnETNRqNJZxMwuFl3z/EHXNHhYjCqdRayYdA7pXPBwHiy75kUqa9G11+fd
+        kxZPF5EXnotYERcfm8d9+V/Xx67al3j6tBnKHxy7BD5WidhObpU/eOpLyMsfHLMEdTyL2FZk+YOnuoRN
+        5Q+WLkEdyyK2ka3lD57aEtJNTn7QzLSEXTdmdRyLmOTPDbe9VsflpnPGYXef88/to/4K+KI+aO6uK0Ed
+        wyL2D0XffFjyRbhzTLUElWcRu8Xsyx+YYgkqyyL2F5efse8SVI5FbI3L38A+S1AZFjGXv4vaJajX2ZRx
+        +YXULEG9xrr8kaQCUhGqoNyS3JhZsy9/YMyVMIUuX3CoJbj8LUQvweUXELUElz+CqZfg8iuYagkufw/2
+        XYLLn4DaJbj8CRm7hJMqX31AFrFwSpdw6PLVObCI1aOGsogdhF1LOMY3X50Hi1g9aiiL2MHYtIRj/ezk
+        55GLWD1qKIvYQcmXcMzffO5CiVg9aiiL2MEZlnDsG67qhEWsHjWURewopOKPWX5CdcIiVo8ayiI2W1Qn
+        LGL1qKEsYrNFdcIiVo8ayiI2W1QnLGL1qKEsYrNFdcIiVo8ayiI2W1QnLGL1qKEsYrNFdcIiVs9y1XxX
+        g22R31BjPf2QD9lQW+iia96jxnr6QW/zwbbMfgGvUGM9Dz8/PV+sml/qDexmF1378+LTs/uocT/6gb4K
+        Rtov4DXq25/Lm8t7y1X7Tr2RFfZdpc5Q3zSsl9BfCf452mzqJn3zJy+fSfeE/s3eLLvmqv8T9Ud+ErNz
+        3UFzlYqf7DffGGOMMcYYc8Kcnf0GtCCsgEAtff8AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAJYAAADIAQMAAAAwS4omAAAABGdBTUEAALGPC/xhBQAAAANQTFRFNjk/

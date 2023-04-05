@@ -13,7 +13,7 @@ namespace PicUploader
             InitializeComponent();
             this.TopMost = true;
             this.TopLevel = true;
-            this.DoubleBuffered = true;
+            DoubleBuffered = true;
 
         }
 
@@ -28,10 +28,12 @@ namespace PicUploader
             RefreshData();
         }
 
-        private async void RefreshData()
-        {
+        public async void RefreshData()
+        { 
             DirectoryInfo directory = new(FolderPath);
             FileInfo[] files = directory.GetFiles();
+            flowLayoutPanel1.Controls.Clear();  
+            flowLayoutPanelGif.Controls.Clear();
             string[] FileFormats = { ".png", ".jpg", ".jpeg", ".txt", ".webp", ".gif" }; //0 png, 1jpg, 2jpeg, 3txt, 4webp, 5gif
             for (int pictureCreator = 0; pictureCreator < files.Length; pictureCreator++)
             {
@@ -103,7 +105,7 @@ namespace PicUploader
 
         private void BTN_AddGif_Click(object sender, EventArgs e)
         {
-            try
+           try
             {
                 string picIDNum = new(TXT_Add.Text.Where(char.IsDigit).ToArray());
                 string picID = picIDNum.Remove(picIDNum.Length - 2);
@@ -115,8 +117,6 @@ namespace PicUploader
                     if (picURL.Contains(".gif"))
                     {
                         File.WriteAllText(picLocationTXT, picURL);
-                        flowLayoutPanel1.Controls.Clear();
-                        flowLayoutPanelGif.Controls.Clear();
                         RefreshData();
                         TXT_Add.Text = null;
                     }
@@ -124,8 +124,6 @@ namespace PicUploader
                     if (picURL.Contains(".webp"))
                     {
                         webClient.DownloadFile(picURL, picLocationWEBP);
-                        flowLayoutPanel1.Controls.Clear();
-                        flowLayoutPanelGif.Controls.Clear();
                         RefreshData();
                         TXT_Add.Text = null;
                     }
@@ -171,13 +169,12 @@ namespace PicUploader
 
         }
 
-
+        
         private void PictureResizeBig(object? sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
             {
-
-                pictureBox.Size = new Size(pictureBox.Width + 5, pictureBox.Height + 5);
+                pictureBox.BackColor = Color.FromArgb(79, 82, 91);
 
             }
         }
@@ -186,12 +183,16 @@ namespace PicUploader
         {
             if (sender is PictureBox pictureBox)
             {
-
-                pictureBox.Size = new Size(pictureBox.Width - 5, pictureBox.Height - 5);
-
+                pictureBox.BackColor = Color.Transparent;
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            DLManager dlManager = new DLManager(this);
+            dlManager.Show();
+        }
     }
 }
+
 
