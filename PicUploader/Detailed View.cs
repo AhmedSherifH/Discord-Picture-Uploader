@@ -13,8 +13,6 @@ namespace PicUploader
             InitializeComponent();
             this.TopMost = true;
             this.TopLevel = true;
-            DoubleBuffered = true;
-
         }
 
         readonly WebClient webClient = new();
